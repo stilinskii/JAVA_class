@@ -25,7 +25,7 @@ public class Prob001_Scanner {
 		//randomNum과 userNum이 일치할때 까지 반복하여 입력받아 평가하는 코드를 작성하세요.
 		
 		Random random = new Random();
-		randomNum = random.nextInt(99)+1;
+		randomNum = random.nextInt(100)+1;
 	
 		try {
 			

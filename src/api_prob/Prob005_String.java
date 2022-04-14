@@ -1,7 +1,5 @@
 package src.api_prob;
 
-import java.util.StringTokenizer;
-
 /*
  * [출력결과]
  * *****음료수 주문****
@@ -30,24 +28,12 @@ public class Prob005_String {
 	
 	public static String[] tokenData(String data){
 		
-		StringTokenizer st = new StringTokenizer(data, ":");
-		String[] arr = new String[st.countTokens()];
-		for(int i =0;i<arr.length;i++) {
-			arr[i]= st.nextToken();
-		}
-		
-		
-		
-		return arr;
+		return data.split(":");
 	}
 	
 	public static Drink process(String[] data){
-		
-		int price = Integer.parseInt(data[1]);
-		int cnt = Integer.parseInt(data[2]);
-		Drink a = new Drink(data[0],price,cnt);
-		
-		return a;
+		Drink dn=new Drink(data[0],Integer.parseInt(data[1]),Integer.parseInt(data[2]));
+		return dn;
 	}
 	
 	

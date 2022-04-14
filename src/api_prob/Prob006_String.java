@@ -37,12 +37,11 @@ public class Prob006_String {
 	}
 
 	public static char toChar(int x) {
-		char c = (char) x;
-		return c;
+		
+		return (char) x;
 	}
 
 	public static String result(char data) {
-		String s = String.valueOf(data);
-		return s;
+		return String.valueOf(data);
 	}
 }
