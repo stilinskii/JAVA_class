@@ -17,7 +17,7 @@ public class Product {
     
     
     public String information() {
-	return String.format("상품명 : %s\n가격 : %d 원\n수량 : %d 개", name,price,quantity);
+	return String.format("상품명 : %s\n가격 : %d 원\n수량 : %d 개\n총구매가격: %d 원", name,price,quantity,price*quantity);
     }
     
     

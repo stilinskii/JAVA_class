@@ -14,6 +14,7 @@ public class BookArrayTest {
 	    System.out.printf("%s, %s, %s, %d원, %.0f%% 할인\n",
 		    data.getTitle(),data.getAuthor(),data.getPublisher(),price,dis*100);
 	    System.out.printf("할인된 가격 : %.0f원\n", price - (price*dis));
+	    //msg += "\n할인된 가격: " + (int)(b.getPrice()*(1-b.getDiscountRate())) + "원";
 	}
     }
 

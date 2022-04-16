@@ -13,6 +13,18 @@ public class ArrayTest {
 		cnt++;
 	    }
 	}
+	
+	//이렇게 하는 방법도 있다. 이게 제일 효율적인 거 같다.
+	for(int[] i: array) {
+		for(int j : i) {
+			System.out.println(j);
+		}
+	}
+	
+	//큰 배열의 수 * 작은 배열의 수 = 배열 요소의 개수, 그러나 이건 큰 배열들의 요소가 같은경우에만 가능
+	//avg = (double)sum/(array.length*array[0].length);
+
+	
 	System.out.printf("합계 : %.2f\n평균 : %.2f\n",sum,sum/cnt);
     
     }

@@ -1,20 +1,17 @@
 package src.java_test.test15;
 
-import java.io.BufferedWriter;
+import java.io.EOFException;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Serializable;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookListTest implements Serializable{
+public class BookListTest{
+	static File file = new File(".\\src\\java_test\\test15\\books.dat");
 
 	public static void main(String[] args) {
 		BookListTest test5 = new BookListTest();
@@ -22,7 +19,8 @@ public class BookListTest implements Serializable{
 		
 		test5.storeList(list);
 		test5.saveFile(list);
-		List<Book> booksList = test5.loadFile();
+		
+		List<Book> booksList = loadFile();
 		test5.printList(booksList);
 
 	}
@@ -35,37 +33,67 @@ public class BookListTest implements Serializable{
 	}
 	
 	public void saveFile(List<Book> list) {
-		File file = new File(".\\src\\java_test\\test15\\book.dat");
-	
 		
-		FileOutputStream fos;
+		
 		try {
-			fos = new FileOutputStream(file); // 파일생성
-			OutputStreamWriter os = new OutputStreamWriter(fos);
-			//OutputStreamWriter osw = new OutputStreamWriter(fos);    
-		     //Writer writer = new BufferedWriter(osw);
-			//FileWriter writer = new FileWriter(file);
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
 			
-			for(Book data: list) {
-				//.writeObject(data.toString()+"\n");
+			for(int i =0;i<list.size();i++) {
+				oos.writeObject(list.get(i));
 			}
 			
-		} catch (FileNotFoundException e) {
+			oos.close();
+			//System.out.println("저장완료");
+		
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+}
+	
+	public static List<Book> loadFile(){
+		
+		ArrayList<Book> booklist= null;
+		try {
+			
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+			
+			booklist = new ArrayList<Book>();
+			Object bk = null;
+			while((bk = ois.readObject())!=null) {
+				booklist.add((Book)bk);
+			}
+			
+			ois.close();
+		} catch (EOFException e) {
+			// TODO Auto-generated catch block
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-	}
-	
-	public List<Book> loadFile(){
-		return null;
+		
+		return booklist;
+		
 		
 	}
 	
 	public void printList(List<Book> list) {
+		
+		for(Book data: list) {
+			System.out.println(data);
+			System.out.println("할인된 가격 :" + ((data.getPrice() - (int)(data.getPrice()*data.getDiscountRate())) + "원"));
+		}
+		
+//		for(int i =0;i<list.size();i++) {
+//			System.out.println(list.get(i));
+//			
+//		}
+		
 		
 	}
 

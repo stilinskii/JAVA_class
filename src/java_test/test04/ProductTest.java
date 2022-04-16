@@ -16,8 +16,8 @@ public class ProductTest {
 	
 	Product p1 = new Product(name,price,quantity);
 	System.out.println(p1.information());
-	System.out.println("총 구매 가격 : "+ (p1.getPrice()* p1.getQuantity())+" 원");
 	
+	sc.close();
     }
 
 }
