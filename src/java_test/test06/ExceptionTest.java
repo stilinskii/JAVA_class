@@ -4,14 +4,20 @@ import java.util.Scanner;
 
 public class ExceptionTest {
 
-    public static void main(String[] args) {
-	Scanner sc = new Scanner(System.in);
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		try {
+			System.out.println("결과값 :" + Calculator.getSum(sc.nextInt()));
+		} catch (InvalidException e) {
+			System.out.println(e.getMessage());
+		}
+
+		sc.close();
+		
+		
+	}
 	
-	int num = sc.nextInt();
-	Calculator cal = new Calculator();
-	System.out.println("결과값 :"+cal.getSum(num));
 	
-	sc.close();
-    }
+	
 
 }

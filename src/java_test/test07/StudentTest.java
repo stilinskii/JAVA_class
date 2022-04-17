@@ -10,7 +10,8 @@ public class StudentTest {
 	
 	
 	for(Student data: students) {
-	    System.out.println(data.toString());
+	    System.out.println(data);
+	    //System.out.println(data.toString());
 	    
 	}
     }
