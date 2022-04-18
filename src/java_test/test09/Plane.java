@@ -1,38 +1,26 @@
 package src.java_test.test09;
 
 abstract public class Plane {
-    private String planeName;
-    private int fuelSize;
-    
-    public Plane() {
-	// TODO Auto-generated constructor stub
-    }
+	private String planeName;
+	private int fuelSize;
 
-    public Plane(String planeName, int fuelSize) {
-	this.planeName = planeName;
-	this.fuelSize = fuelSize;
-    }
-    
-    
-    public void setFuelSize(int fuelSize) {
-        this.fuelSize = fuelSize;
-    }
+	public Plane() {
+		// TODO Auto-generated constructor stub
+	}
 
-    public int getFuelSize() {
-        return fuelSize;
-    }
+	public Plane(String planeName, int fuelSize) {
+		super();
+		this.planeName = planeName;
+		this.fuelSize = fuelSize;
+	}
 
-    public void refuel(int fuel) {
+	public void refuel(int fuel) {
+		fuelSize += fuel;
+	}
 	
-	fuelSize += fuel;
-    } 
-    
-    public void flight(int distance) {}
-    
-    public String toString() {
-	return String.format("%s\t\t%d", planeName,fuelSize);
-    }
-    
-    
-    
+	public abstract void flight(int disthance);
+	
+	public String toStirng() {
+		return String.format("%s \t %d", planeName,fuelSize);
+	}
 }
