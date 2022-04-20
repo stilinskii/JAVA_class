@@ -5,7 +5,7 @@ public class Goods {
 	private int price;
 	private int quantity;
 	
-	public Goods() {
+	 public Goods() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -14,10 +14,6 @@ public class Goods {
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
-	}
-	
-	public String toString() {
-		return String.format("%s, %d 원, %d 개", name,price,quantity);
 	}
 
 	public String getName() {
@@ -43,8 +39,10 @@ public class Goods {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	
-	
-
+	 
+	@Override
+	public String toString() {
+		
+		return String.format("%s, %d 원, %s 개\n총 구매 가격 : %d원",name,price,quantity,price*quantity);
+	}
 }
