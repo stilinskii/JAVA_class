@@ -9,11 +9,14 @@ public class Book implements Serializable{
 	private String publisher;
 	private double discountRate;
 	
+	
 	public Book() {
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public Book(String title, String author, int price, String publisher, double discountRate) {
+		super();
 		this.title = title;
 		this.author = author;
 		this.price = price;
@@ -21,55 +24,9 @@ public class Book implements Serializable{
 		this.discountRate = discountRate;
 	}
 	
+	@Override
 	public String toString() {
-		return String.format("%s, %s, %s, %d원, %d%% 할인" , title,author,publisher,price,(int)(discountRate*100));
+		
+		return String.format("%s, %s, %s, %d원,%d%% 할인\n할인된 가격 : %d원",title,author,publisher,price,(int)(discountRate*100),(int)(price*(1-discountRate)));
 	}
-
-	
-	
-	//getters setters
-	
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-	public String getPublisher() {
-		return publisher;
-	}
-
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
-	}
-
-	public double getDiscountRate() {
-		return discountRate;
-	}
-
-	public void setDiscountRate(double discountRate) {
-		this.discountRate = discountRate;
-	}
-	
-	
-	
-	
 }
