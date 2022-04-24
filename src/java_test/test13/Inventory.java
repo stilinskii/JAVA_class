@@ -22,19 +22,22 @@ public class Inventory {
 		this.putAmount = putAmount;
 		this.inventoryAmount = putAmount;
 	}
-
+	
+	
 	@Override
 	public String toString() {
 		SimpleDateFormat putFormat = new SimpleDateFormat("yyyy년 M월 dd일 입고");
 		SimpleDateFormat getFormat = new SimpleDateFormat("yyyy년 M월 dd일 출고");
-		String rdate = getDate == null ? null : getFormat.format(getDate);
-
-		return String.format("%s, %d개, %s, %d개, 재고 %d개", putFormat.format(putDate), putAmount, rdate, getAmount,
-				inventoryAmount);
+		String redate = getDate==null ? null:getFormat.format(getDate); 
+		
+		return String.format("%s, %s, %d개, %s, %d개, 재고 %d개",
+				productName,putFormat.format(putDate),putAmount,redate,getAmount,inventoryAmount);
 	}
 
-	// getters setters
-
+	
+	
+	
+	//getters setters
 	public String getProductName() {
 		return productName;
 	}
@@ -72,21 +75,21 @@ public class Inventory {
 	}
 
 	public void setGetAmount(int getAmount) {
-
+		
 		try {
-			if (getAmount > this.getInventoryAmount()) {
-				throw new AmountNotEnough("재고부족");
-			}else {
-				this.getAmount = getAmount;
-				this.inventoryAmount -= getAmount;
-				
-			}
-
-		} catch (AmountNotEnough e) {
+		if(getAmount > inventoryAmount) {
+			throw new AmountNotEnough("재고부족");
+		}else {
+			
+			this.getAmount = getAmount;
+			this.inventoryAmount -= getAmount;
+		}
+		
+		
+		}catch(AmountNotEnough e) {
 			System.out.println(e.getMessage());
 			System.exit(0);
 		}
-
 	}
 
 	public int getInventoryAmount() {
@@ -96,5 +99,10 @@ public class Inventory {
 	public void setInventoryAmount(int inventoryAmount) {
 		this.inventoryAmount = inventoryAmount;
 	}
-
+	
+	
+	
+	
+	
+	
 }
