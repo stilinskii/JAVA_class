@@ -4,101 +4,97 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Inventory {
-    private String productName;
-    private Date putDate;
-    private Date getDate;
-    private int putAmount;
-    private int getAmount;
-    private int inventoryAmount;
-    
-   public Inventory() {
-}
+	private String productName;
+	private Date putDate; // 입고일
+	private Date getDate; // 출고일
+	private int putAmount; // 입고수량
+	private int getAmount; // 출고수량
+	private int inventoryAmount;// 재고수량
 
-public Inventory(String productName, Date putDate, int putAmount) {
-    this.productName = productName;
-    this.putDate = putDate;
-    this.putAmount = putAmount;
-    this.inventoryAmount = this.putAmount;
-    
-}
-   
+	public Inventory() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Inventory(String productName, Date putDate, int putAmount) {
+		super();
+		this.productName = productName;
+		this.putDate = putDate;
+		this.putAmount = putAmount;
+		this.inventoryAmount = putAmount;
+	}
+
 	@Override
 	public String toString() {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy년 MM월 dd일 입고");
-		SimpleDateFormat format2 = new SimpleDateFormat("yyyy년 MM월 dd일 출고");
-		if(getDate!=null) {
-			return String.format("%s, \t %s, %d개, %s, %d개, 재고 %d개", 
-				    productName, format.format(putDate),putAmount,format2.format(getDate),getAmount,inventoryAmount);
-		}
-		
-	    return String.format("%s, \t %s, %d개, %s, %d개, 재고 %d개", 
-		    productName, format.format(putDate),putAmount,getDate,getAmount,inventoryAmount);
-	    
-	}
-	
-	
-	//getters setters 
-	public void setGetDate(Date setDate) {
-	    this.getDate = setDate;
-	}
-	
+		SimpleDateFormat putFormat = new SimpleDateFormat("yyyy년 M월 dd일 입고");
+		SimpleDateFormat getFormat = new SimpleDateFormat("yyyy년 M월 dd일 출고");
+		String rdate = getDate == null ? null : getFormat.format(getDate);
 
-	
-	public void setGetAmount(int getAmount){
-		
-		try {
-		if(getAmount>putAmount) {
-			
-			throw new AmountNotEnough("현재 재고가 부족합니다. 재고수량 확인하시기 바랍니다.");
-		}
-		}catch(AmountNotEnough e) {
-			System.out.println(e.toString());
-			System.exit(0);
-		}
-	    this.getAmount = getAmount;
+		return String.format("%s, %d개, %s, %d개, 재고 %d개", putFormat.format(putDate), putAmount, rdate, getAmount,
+				inventoryAmount);
 	}
-	
-	
-	
+
+	// getters setters
 
 	public String getProductName() {
-	    return productName;
+		return productName;
 	}
 
 	public void setProductName(String productName) {
-	    this.productName = productName;
+		this.productName = productName;
 	}
 
 	public Date getPutDate() {
-	    return putDate;
+		return putDate;
 	}
 
 	public void setPutDate(Date putDate) {
-	    this.putDate = putDate;
+		this.putDate = putDate;
+	}
+
+	public Date getGetDate() {
+		return getDate;
+	}
+
+	public void setGetDate(Date getDate) {
+		this.getDate = getDate;
 	}
 
 	public int getPutAmount() {
-	    return putAmount;
+		return putAmount;
 	}
 
 	public void setPutAmount(int putAmount) {
-	    this.putAmount = putAmount;
+		this.putAmount = putAmount;
 	}
 
 	public int getGetAmount() {
-	    return getAmount;
+		return getAmount;
 	}
 
+	public void setGetAmount(int getAmount) {
+
+		try {
+			if (getAmount > this.getInventoryAmount()) {
+				throw new AmountNotEnough("재고부족");
+			}else {
+				this.getAmount = getAmount;
+				this.inventoryAmount -= getAmount;
+				
+			}
+
+		} catch (AmountNotEnough e) {
+			System.out.println(e.getMessage());
+			System.exit(0);
+		}
+
+	}
 
 	public int getInventoryAmount() {
-	    return inventoryAmount;
+		return inventoryAmount;
 	}
 
 	public void setInventoryAmount(int inventoryAmount) {
-	    this.inventoryAmount = inventoryAmount;
+		this.inventoryAmount = inventoryAmount;
 	}
-	
-	
-   
-   
+
 }
