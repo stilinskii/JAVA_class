@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="meminfo">
+	<select id="count" resultType="int">
+		SELECT count(*) FROM meminfo
+	</select>
+	
+	<insert id="save" parameterType="login.dto.MemInfoDTO">
+		INSERT INTO
+		meminfo(id,password,username,email)
+		VALUES(#{id},#{password},#{username},#{email})
+	</insert>
+	
+	<select id="findPasswordById" parameterType="String" resultType="String">
+		SELECT password FROM meminfo Where id='${id}'
+	</select>
+	
+	<select id="findById" parameterType="String" resultType="login.dto.MemInfoDTO">
+		SELECT * FROM meminfo Where id='${id}'
+	</select>
+	
+	<update id="update" parameterType="login.dto.MemInfoDTO">
+		UPDATE meminfo SET username='${username}',email='${email}', password='${password}'
+		WHERE id='${id}'
+	</update>
+
+	
+
+</mapper>
